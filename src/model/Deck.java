@@ -18,6 +18,38 @@ public class Deck {
 		return drawn;
 	}
 	
+	public ArrayList<Card> drawOpener() {
+		ArrayList<Card> hand = drawCards(7);
+		int numberOfLandsInHand = 0;
+		for (Card card : hand) {
+			if (card instanceof Land) {
+				numberOfLandsInHand++;
+			}
+		}
+		if (numberOfLandsInHand > 5 || numberOfLandsInHand < 2) {
+			cards.addAll(hand);
+			shuffle();
+			return mulliganTo6();
+		}
+		return hand;
+	}
+	
+	public ArrayList<Card> mulliganTo6() {
+		ArrayList<Card> hand = drawCards(6);
+		int numberOfLandsInHand = 0;
+		for (Card card : hand) {
+			if (card instanceof Land) {
+				numberOfLandsInHand++;
+			}
+		}
+		if (numberOfLandsInHand == 0) {
+			cards.addAll(hand);
+			shuffle();
+			return drawCards(5);
+		}
+		return hand;
+	}
+	
 	public void shuffle() {
 		Collections.shuffle(cards);
 	}

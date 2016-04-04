@@ -1,15 +1,12 @@
 package simulations;
 
-import java.util.ArrayList;
-
 import model.Battlefield;
 import model.Card;
 import model.Deck;
 
-public class SOIRuinInTheirWake {
+public class SOIRuinInTheirWake extends AbstractSimulation {
 
 	public static void main(String[] args) {
-		int numberOfIterations = 100000;
 		int success = 0;
 		int failure = 0;
 		int mulligansOrNoRuin = 0;
@@ -32,9 +29,9 @@ public class SOIRuinInTheirWake {
 	}
 	
 	public static int iteration() {
-		Deck deck = buildDeck();
-		Battlefield battlefield = new Battlefield();
-		ArrayList<Card> hand = deck.drawCards(8);
+		deck = buildDeck();
+		battlefield = new Battlefield();
+		hand = deck.drawCards(7);
 		
 		if (hand.contains(new Card("Forest"))) {
 			if (hand.contains(new Card("Wastes"))) {
